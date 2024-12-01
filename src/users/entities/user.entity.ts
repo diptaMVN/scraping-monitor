@@ -1,5 +1,12 @@
 import { Team } from 'src/team/entities/team.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 export enum Role {
   ADMIN = 'admin',
   USER = 'user',
@@ -25,7 +32,20 @@ export class User {
   role: Role;
 
   @ManyToOne(() => Team, (team) => team, {
-    onDelete: 'CASCADE'
+    onDelete: 'CASCADE',
   })
   team: Team;
+
+  @CreateDateColumn({
+    type: 'timestamptz',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
+  created_at: Date;
+
+  @UpdateDateColumn({
+    type: 'timestamptz',
+    default: () => 'CURRENT_TIMESTAMP',
+    onUpdate: 'CURRENT_TIMESTAMP',
+  })
+  updated_at: Date;
 }

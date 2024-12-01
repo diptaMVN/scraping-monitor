@@ -1,4 +1,8 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateTeamDto } from './dto/create-team.dto';
 import { UpdateTeamDto } from './dto/update-team.dto';
 import { Repository } from 'typeorm';
@@ -19,7 +23,9 @@ export class TeamService {
       return result;
     } catch (error) {
       if (error.code === '23505') {
-        throw new ConflictException('A team with this name already exists');
+        throw new ConflictException(
+          `Team: ${createTeamDto.name} is already exists`,
+        );
       }
       throw error; // Rethrow for other types of errors
     }

@@ -10,6 +10,6 @@ export class CreateUserDto {
 
     @IsNotEmpty()
     @IsNumber()
-    team: number
+    teamId: number
 
 }
