@@ -27,7 +27,7 @@ export class UsersService {
   }
 
   findAll() {
-    return `This action returns all users`;
+    return `This action returns all users s`;
   }
 
   findOne(id: number) {
